@@ -1,14 +1,17 @@
-const CracoAlias = require("craco-alias");
+const CracoAlias = require('craco-alias')
 
 module.exports = {
+  postcss: {
+    plugins: [require('tailwindcss'), require('autoprefixer')],
+  },
   plugins: [
     {
       plugin: CracoAlias,
       options: {
-        source: "tsconfig",
-        baseUrl: "./src",
-        tsConfigPath: "./tsconfig.json",
+        source: 'tsconfig',
+        baseUrl: './src',
+        tsConfigPath: './tsconfig.json',
       },
     },
   ],
-};
+}
