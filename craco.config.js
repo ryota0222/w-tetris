@@ -1,8 +1,10 @@
 const CracoAlias = require('craco-alias')
 
 module.exports = {
-  postcss: {
-    plugins: [require('tailwindcss'), require('autoprefixer')],
+  style: {
+    postcssOptions: {
+      plugins: [require('tailwindcss'), require('autoprefixer')],
+    },
   },
   plugins: [
     {
