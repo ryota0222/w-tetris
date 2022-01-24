@@ -77,13 +77,15 @@ export class Game {
 
   // メインキャンバスの初期化
   initMainCanvas() {
+    const _this = this
     this.mainCanvas = document.getElementById(
       PLAY_SCREEN_CANVAS_ID
     ) as HTMLCanvasElement
     this.mainCtx = this.mainCanvas.getContext('2d')
     this.mainCanvas.width = SCREEN_WIDTH
     this.mainCanvas.height = SCREEN_HEIGHT
-    this.mainCanvas.style.border = '4px solid #555'
+    this.mainCanvas.style.border = '2px solid #30363D'
+    this.mainCanvas.style.borderRadius = '6px'
   }
 
   // ネクストキャンバスの初期化
@@ -94,7 +96,6 @@ export class Game {
     this.nextCtx = this.nextCanvas.getContext('2d')
     this.nextCanvas.width = NEXT_AREA_SIZE
     this.nextCanvas.height = NEXT_AREA_SIZE
-    this.nextCanvas.style.border = '4px solid #555'
   }
 
   // ゲームの開始処理（STARTボタンクリック時）

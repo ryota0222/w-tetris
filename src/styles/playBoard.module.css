@@ -1,0 +1,24 @@
+.play_screen {
+  background-size: 32px;
+  background-repeat: repeat;
+}
+
+.dark {
+  background-image: url('http://localhost:3000/images/dark-green/bg.png');
+}
+
+.light {
+  background-image: url('http://localhost:3000/images/light-green/bg.png');
+}
+
+@media (max-width: 816px) {
+  .play_screen {
+    transform: scale(0.7);
+  }
+}
+
+@media (max-width: 375px) {
+  .play_screen {
+    transform: scale(0.6);
+  }
+}
