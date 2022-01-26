@@ -1,0 +1,9 @@
+.operation_btn_container {
+  width: calc(48px * 3);
+}
+
+@media (max-width: 375px) {
+  .operation_btn_container {
+    width: calc(40px * 3);
+  }
+}

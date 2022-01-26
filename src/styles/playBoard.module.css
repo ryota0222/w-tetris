@@ -1,5 +1,5 @@
 .play_screen {
-  background-size: 32px;
+  background-size: calc(320px / 10);
   background-repeat: repeat;
 }
 
@@ -13,12 +13,14 @@
 
 @media (max-width: 816px) {
   .play_screen {
-    transform: scale(0.7);
+    background-size: calc(252px / 10);
+    width: 256px;
   }
 }
 
-@media (max-width: 375px) {
+@media (max-width: 414px) {
   .play_screen {
-    transform: scale(0.6);
+    background-size: calc(210px / 10);
+    width: 216px;
   }
 }

@@ -6,7 +6,8 @@ import {
   ROWS_COUNT,
   BLOCK_SIZE,
   NEXT_CANVAS_ID,
-  NEXT_AREA_SIZE,
+  NEXT_BOARD_WIDTH,
+  NEXT_BOARD_HEIGHT,
   BLOCK_LIGHT_GREEN_SOURCES,
   BLOCK_DARK_GREEN_SOURCES,
 } from '@/consts'
@@ -57,6 +58,8 @@ export class Game {
   public nextCanvas: HTMLCanvasElement | null
   public nextCtx: CanvasRenderingContext2D | null
   public gameTheme: GameTheme
+  public score: Score | null
+  private observers: Function[]
   private field: Field | null
   private timer: NodeJS.Timer | null
   private mino: Mino | null
@@ -66,6 +69,8 @@ export class Game {
     this.mainCtx = null
     this.nextCanvas = null
     this.nextCtx = null
+    this.score = null
+    this.observers = []
     this.field = null
     this.timer = null
     this.mino = null
@@ -75,9 +80,19 @@ export class Game {
     this.initNextCanvas()
   }
 
+  public addObserver(observer: Function) {
+    this.observers.push(observer)
+  }
+
+  private notifyObserver(propertyName: string, oldValue: any, newValue: any) {
+    for (let i = 0; i < this.observers.length; i++) {
+      let o = this.observers[i]
+      o.apply(this, [propertyName, oldValue, newValue])
+    }
+  }
+
   // メインキャンバスの初期化
   initMainCanvas() {
-    const _this = this
     this.mainCanvas = document.getElementById(
       PLAY_SCREEN_CANVAS_ID
     ) as HTMLCanvasElement
@@ -94,8 +109,8 @@ export class Game {
       NEXT_CANVAS_ID
     ) as HTMLCanvasElement
     this.nextCtx = this.nextCanvas.getContext('2d')
-    this.nextCanvas.width = NEXT_AREA_SIZE
-    this.nextCanvas.height = NEXT_AREA_SIZE
+    this.nextCanvas.width = NEXT_BOARD_WIDTH
+    this.nextCanvas.height = NEXT_BOARD_HEIGHT
   }
 
   // ゲームの開始処理（STARTボタンクリック時）
@@ -104,8 +119,17 @@ export class Game {
     if (theme) {
       this.gameTheme = theme
     }
+    // スコアの初期化
+    this.score = new Score()
+    // taroのプロパティ値変更を監視
+    this.score.addObserver(
+      (propertyName: string, oldValue: number, newValue: number) => {
+        this.notifyObserver('score_change', oldValue, newValue)
+      }
+    )
+
     // フィールドとミノの初期化
-    this.field = new Field()
+    this.field = new Field(this.score)
 
     // 最初のミノを読み込み
     this.popMino()
@@ -171,8 +195,8 @@ export class Game {
     ;(this.nextCtx as CanvasRenderingContext2D).clearRect(
       0,
       0,
-      NEXT_AREA_SIZE,
-      NEXT_AREA_SIZE
+      NEXT_BOARD_WIDTH,
+      NEXT_BOARD_HEIGHT
     )
   }
 
@@ -230,22 +254,42 @@ export class Game {
     })
   }
 
+  // 左に移動
+  moveLeft() {
+    if (this.valid(-1, 0)) (this.mino as Mino).x--
+  }
+
+  // 右に移動
+  moveRight() {
+    if (this.valid(1, 0)) (this.mino as Mino).x++
+  }
+
+  // 下に移動
+  moveBottom() {
+    if (this.valid(0, 1)) (this.mino as Mino).y++
+  }
+
+  // 回転
+  rotate() {
+    if (this.valid(0, 0, 1)) (this.mino as Mino).rotate()
+  }
+
   // キーボードイベント設定
   setKeyEvent() {
     const _this = this
     document.onkeydown = function (e: KeyboardEvent) {
       switch (e.code) {
         case 'ArrowLeft': // 左
-          if (_this.valid(-1, 0)) (_this.mino as Mino).x--
+          _this.moveLeft()
           break
         case 'ArrowRight': // 右
-          if (_this.valid(1, 0)) (_this.mino as Mino).x++
+          _this.moveRight()
           break
         case 'ArrowDown': // 下
-          if (_this.valid(0, 1)) (_this.mino as Mino).y++
+          _this.moveBottom()
           break
         case 'Space': // スペース
-          if (_this.valid(0, 0, 1)) (_this.mino as Mino).rotate()
+          _this.rotate()
           break
         default:
           break
@@ -350,10 +394,10 @@ export class Block {
     if (this.image) {
       ctx.drawImage(
         this.image,
-        (this.x + offsetX) * BLOCK_SIZE,
-        (this.y + offsetY) * BLOCK_SIZE,
-        BLOCK_SIZE,
-        BLOCK_SIZE
+        (this.x + offsetX) * BLOCK_SIZE * 0.5,
+        (this.y + offsetY) * BLOCK_SIZE * 0.5 - 10,
+        BLOCK_SIZE * 0.5,
+        BLOCK_SIZE * 0.5
       )
     }
   }
@@ -376,7 +420,6 @@ export class Mino {
 
   initBlocks() {
     let t = this.type
-    console.log(this.gameTheme)
     switch (t) {
       case 0: // I型
         this.blocks = [
@@ -495,10 +538,35 @@ export class Mino {
   }
 }
 
+export class Score {
+  public score: number
+  private observers: Function[]
+  constructor() {
+    this.score = 0
+    this.observers = []
+  }
+  setScore(score: number) {
+    this.notifyObserver('score', this.score, this.score + score)
+    this.score += score
+  }
+  // scoreの変更を監視
+  addObserver(observer: Function) {
+    this.observers.push(observer)
+  }
+  notifyObserver(propertyName: string, oldValue: number, newValue: number) {
+    for (let i = 0; i < this.observers.length; i++) {
+      let o = this.observers[i]
+      o.apply(this, [propertyName, oldValue, newValue])
+    }
+  }
+}
+
 export class Field {
   public blocks: Block[]
-  constructor() {
+  public score: Score
+  constructor(score: Score) {
     this.blocks = []
+    this.score = score
   }
 
   drawFixedBlocks(ctx: CanvasRenderingContext2D) {
@@ -511,6 +579,7 @@ export class Field {
       if (c === COLS_COUNT) {
         this.blocks = this.blocks.filter((block) => block.y !== r)
         this.blocks.filter((block) => block.y < r).forEach((upper) => upper.y++)
+        this.score.setScore(100)
       }
     }
   }

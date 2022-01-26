@@ -4,14 +4,14 @@ const Header: React.VFC = () => {
       <nav>
         <div className="md:flex items-center justify-between py-2 px-8 md:px-12">
           <div className="flex justify-between items-center">
-            <div className="text-2xl font-bold text-gray-800 md:text-3xl">
+            <div className="text-2xl font-bold text-white md:text-3xl">
               <a href="#">w-tetris</a>
             </div>
             {/* breakpoint: md以下で表示 */}
             <div className="md:hidden">
               <button
                 type="button"
-                className="block text-gray-800 hover:text-gray-700 focus:text-gray-700 focus:outline-none"
+                className="block text-white hover:text-gray-700 focus:text-gray-700 focus:outline-none"
               >
                 <svg className="h-6 w-6 fill-current" viewBox="0 0 24 24">
                   <path
@@ -26,7 +26,7 @@ const Header: React.VFC = () => {
           <div className="flex flex-col md:flex-row hidden md:block -mx-2">
             <a
               href="#"
-              className="text-gray-800 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium py-2 px-2 md:mx-2"
+              className="text-white rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium py-2 px-2 md:mx-2"
             >
               Home
             </a>

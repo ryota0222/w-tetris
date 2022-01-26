@@ -7,7 +7,8 @@ export const COLS_COUNT = 10
 export const ROWS_COUNT = 20
 export const SCREEN_WIDTH = COLS_COUNT * BLOCK_SIZE
 export const SCREEN_HEIGHT = ROWS_COUNT * BLOCK_SIZE
-export const NEXT_AREA_SIZE = 160
+export const NEXT_BOARD_WIDTH = 80
+export const NEXT_BOARD_HEIGHT = 60
 
 export const BLOCK_DARK_GREEN_SOURCES = [
   'images/dark-green/01.png',

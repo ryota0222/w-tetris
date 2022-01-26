@@ -1,26 +1,55 @@
-import React, { useState, useContext, createContext, useMemo } from 'react'
+import React, { useContext, createContext, useMemo } from 'react'
 import { useTetris } from '@/hooks/useTetris'
-import { Theme, GameTheme } from '@/types'
+import { Theme, GameTheme, GameStatus } from '@/types'
 import { useDarkMode } from '@/hooks/useDarkMode'
 
 interface TetrisContextType {
   start: (theme?: GameTheme | undefined) => void
   pause: () => void
   restart: () => void
+  reset: () => void
   end: () => void
+  moveLeft: () => void
+  moveRight: () => void
+  moveBottom: () => void
+  rotate: () => void
   mode: Theme
+  score: number
+  in_game: boolean
+  status: GameStatus
 }
 
 const TetrisContext = createContext<TetrisContextType>({
   start: () => {},
   pause: () => {},
   restart: () => {},
+  reset: () => {},
   end: () => {},
+  moveLeft: () => {},
+  moveRight: () => {},
+  moveBottom: () => {},
+  rotate: () => {},
   mode: 'dark',
+  score: 0,
+  in_game: false,
+  status: 'waiting',
 })
 
 export const TetrisProvider: React.FC = ({ children }) => {
-  const { start, pause, restart, end } = useTetris()
+  const {
+    start,
+    pause,
+    restart,
+    reset,
+    end,
+    score,
+    inGame: in_game,
+    moveLeft,
+    moveBottom,
+    moveRight,
+    rotate,
+    status,
+  } = useTetris()
   const { isDarkMode } = useDarkMode()
   //   modeIdの値
   const mode = useMemo<Theme>(
@@ -29,8 +58,36 @@ export const TetrisProvider: React.FC = ({ children }) => {
   )
 
   const value = useMemo(
-    () => ({ start, pause, restart, end, mode }),
-    [start, pause, restart, end, mode]
+    () => ({
+      start,
+      pause,
+      restart,
+      reset,
+      end,
+      mode,
+      score,
+      in_game,
+      moveLeft,
+      moveBottom,
+      moveRight,
+      rotate,
+      status,
+    }),
+    [
+      start,
+      pause,
+      restart,
+      reset,
+      end,
+      mode,
+      score,
+      in_game,
+      moveLeft,
+      moveBottom,
+      moveRight,
+      rotate,
+      status,
+    ]
   )
   return (
     <TetrisContext.Provider value={value}>{children}</TetrisContext.Provider>
