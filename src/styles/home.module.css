@@ -1,0 +1,28 @@
+.panels {
+  flex: 1;
+}
+
+.container {
+  height: 100%;
+}
+
+@media (max-width: 816px) {
+  .panels {
+    height: 516px;
+  }
+}
+
+@media (max-width: 414px) {
+  .panels {
+    height: 436px;
+  }
+  .container {
+    height: 640px;
+  }
+}
+
+@media (max-width: 375px) {
+  .container {
+    height: 610px;
+  }
+}
