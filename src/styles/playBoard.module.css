@@ -4,11 +4,11 @@
 }
 
 .dark {
-  background-image: url('http://localhost:3000/images/dark-green/bg.png');
+  background-image: url('https://w-tetris.vercel.app/images/dark-green/bg.png');
 }
 
 .light {
-  background-image: url('http://localhost:3000/images/light-green/bg.png');
+  background-image: url('https://w-tetris.vercel.app/images/light-green/bg.png');
 }
 
 @media (max-width: 816px) {
