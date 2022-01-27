@@ -6,7 +6,12 @@ import { memo } from 'react'
 export const PlayLeftButton: React.VFC = memo(() => {
   const { moveLeft, in_game } = useTetrisContext()
   return (
-    <SquarePlayButtonTemplate onClick={moveLeft} active={in_game} role="button">
+    <SquarePlayButtonTemplate
+      onClick={moveLeft}
+      active={in_game}
+      role="button"
+      allowLongPress={true}
+    >
       <PlayLeftIcon active={in_game} />
     </SquarePlayButtonTemplate>
   )

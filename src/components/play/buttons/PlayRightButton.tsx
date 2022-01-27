@@ -11,6 +11,7 @@ export const PlayRightButton: React.VFC = memo(() => {
       onClick={moveRight}
       active={in_game}
       role="button"
+      allowLongPress={true}
     >
       <PlayRightIcon active={in_game} />
     </SquarePlayButtonTemplate>

@@ -29,7 +29,8 @@ const Home = () => {
             <DescriptionBoard />
           </div>
         </div>
-        <div className="row-start-4 col-start-3 col-end-6 sm:col-span-full sm:row-start-9 sm:row-end-12 pl-8 sm:pl-0">
+        <div className="row-start-4 col-start-3 col-end-6 sm:col-span-full sm:row-start-9 sm:row-end-12 pl-8 sm:pl-0 flex flex-col">
+          <Spacer />
           <OperationBoard />
         </div>
       </div>

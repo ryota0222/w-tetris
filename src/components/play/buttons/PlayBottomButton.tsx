@@ -10,6 +10,7 @@ export const PlayBottomButton: React.VFC = memo(() => {
       onClick={moveBottom}
       active={in_game}
       role="button"
+      allowLongPress={true}
     >
       <PlayBottomIcon active={in_game} />
     </SquarePlayButtonTemplate>

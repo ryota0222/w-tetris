@@ -10,6 +10,7 @@ import {
   NEXT_BOARD_HEIGHT,
   BLOCK_LIGHT_GREEN_SOURCES,
   BLOCK_DARK_GREEN_SOURCES,
+  GAME_SPEED,
 } from '@/consts'
 import { GameTheme } from '@/types'
 
@@ -139,7 +140,7 @@ export class Game {
 
     // 落下処理
     if (this.timer) clearInterval(this.timer)
-    this.timer = setInterval(() => this.dropMino(), 1000)
+    this.timer = setInterval(() => this.dropMino(), GAME_SPEED)
 
     // キーボードイベントの登録
     this.setKeyEvent()
@@ -155,7 +156,7 @@ export class Game {
   //   ゲームの再開
   restart() {
     // 落下処理
-    this.timer = setInterval(() => this.dropMino(), 1000)
+    this.timer = setInterval(() => this.dropMino(), GAME_SPEED)
     // キーボードイベントの登録
     this.setKeyEvent()
   }
@@ -295,7 +296,7 @@ export class Game {
           break
       }
       _this.drawAll()
-    }.bind(this)
+    }
   }
 
   // キーボードイベント解除
@@ -309,7 +310,7 @@ export class Game {
         default:
           break
       }
-    }.bind(this)
+    }
   }
 }
 

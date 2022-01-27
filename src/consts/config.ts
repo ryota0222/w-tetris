@@ -1,7 +1,7 @@
 export const SATRT_BTN_ID = 'start-btn'
 export const PLAY_SCREEN_CANVAS_ID = 'play-screen-canvas'
 export const NEXT_CANVAS_ID = 'next-canvas'
-export const GAME_SPEED = 500
+export const GAME_SPEED = 800
 export const BLOCK_SIZE = 32
 export const COLS_COUNT = 10
 export const ROWS_COUNT = 20
