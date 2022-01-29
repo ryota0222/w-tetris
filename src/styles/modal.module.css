@@ -71,7 +71,7 @@
 }
 
 .gradient_border_btn {
-  border-image: url('http://localhost:3000/images/gradient.png') 10;
+  border-image: url('http://localhost:3000/images/gradient.png') 3;
   width: 80%;
   padding: 12px 0;
   border-width: 3px;
