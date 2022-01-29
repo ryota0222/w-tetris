@@ -71,13 +71,13 @@
 }
 
 .gradient_border_btn {
-  border-image: url('http://localhost:3000/images/gradient.png') 3;
+  border-image: url('https://w-tetris.vercel.app/images/gradient.png') 3;
   width: 80%;
   padding: 12px 0;
   border-width: 3px;
   color: rgba(255, 255, 255, 0);
   -webkit-background-clip: text;
-  background-image: url('http://localhost:3000/images/gradient.png');
+  background-image: url('https://w-tetris.vercel.app/images/gradient.png');
   position: relative;
 }
 
@@ -87,7 +87,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-image: url('http://localhost:3000/images/gradient.png');
+  background-image: url('https://w-tetris.vercel.app/images/gradient.png');
   font-size: 16px;
   background-clip: text;
   -webkit-background-clip: text;

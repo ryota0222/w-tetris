@@ -17,11 +17,11 @@ export const PlayStateChangeButton: React.VFC = memo(() => {
             refPauseButton.current.blur()
           }
         }}
-        active={true}
+        active={status !== 'end'}
         role="button"
         ref={refPauseButton}
       >
-        <PlayPauseIcon active={true} />
+        <PlayPauseIcon active={status !== 'end'} />
       </RoundPlayButtonTemplate>
     )
   } else {
