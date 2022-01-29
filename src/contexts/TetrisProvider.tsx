@@ -7,7 +7,7 @@ interface TetrisContextType {
   start: (theme?: GameTheme | undefined) => void
   pause: () => void
   restart: () => void
-  reset: () => void
+  reset: (auto?: boolean) => void
   end: () => void
   moveLeft: () => void
   moveRight: () => void

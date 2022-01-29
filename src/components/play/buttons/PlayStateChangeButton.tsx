@@ -7,9 +7,20 @@ import { createRef, memo } from 'react'
 export const PlayStateChangeButton: React.VFC = memo(() => {
   const { in_game, pause, restart, start, status } = useTetrisContext()
   const refStartButton = createRef<HTMLButtonElement>()
+  const refPauseButton = createRef<HTMLButtonElement>()
   if (in_game) {
     return (
-      <RoundPlayButtonTemplate onClick={pause} active={true} role="button">
+      <RoundPlayButtonTemplate
+        onClick={() => {
+          pause()
+          if (refPauseButton.current) {
+            refPauseButton.current.blur()
+          }
+        }}
+        active={true}
+        role="button"
+        ref={refPauseButton}
+      >
         <PlayPauseIcon active={true} />
       </RoundPlayButtonTemplate>
     )
