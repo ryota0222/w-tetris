@@ -95,8 +95,8 @@ const Home = () => {
             className={`${modalCss.gradient_border_btn} dot-gothic tracking-wider`}
             onClick={() => {
               reset()
-              pause()
               closeModal()
+              setTimeout(() => pause(), 0)
             }}
           >
             QUIT
