@@ -3,12 +3,14 @@ import { TetrisProvider } from '@/contexts/TetrisProvider'
 import { ModalProvider } from '@/contexts/ModalProvider'
 import { useEffect } from 'react'
 import { useOrientation } from 'react-use'
+import { useSp } from '@/hooks/useSp'
 
 export const AppProvider: React.FC = ({ children }) => {
   const state = useOrientation({
     angle: 0,
     type: 'portrait-primary',
   })
+  const { isSp } = useSp()
   useEffect(() => {
     // vhの値の保存
     setFillHeight()
@@ -23,10 +25,10 @@ export const AppProvider: React.FC = ({ children }) => {
   }, [])
   // 向きの変更の検知
   useEffect(() => {
-    if (state.type === 'landscape-primary') {
+    if (state.type === 'landscape-primary' && isSp) {
       alert('縦向きでご利用が推奨です')
     }
-  }, [state])
+  }, [state, isSp])
   return (
     <ModalProvider>
       <TetrisProvider>
