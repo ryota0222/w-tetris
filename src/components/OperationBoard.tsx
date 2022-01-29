@@ -11,7 +11,7 @@ import css from '@/styles/operationBoard.module.css'
 
 const OperationBoard = memo(() => {
   return (
-    <NeumorphismBox className="py-4 px-8 ml-4 sm:mx-2 sm:mt-6 xs:mt-2">
+    <NeumorphismBox className="py-4 px-8 ml-4 mb-1 sm:mx-2 sm:mt-6 xs:mt-2">
       {/* 移動ボタン */}
       <div
         className={`flex flex-col justify-center ${css.operation_btn_container}`}

@@ -17,46 +17,46 @@ const DescriptionBoard: React.VFC = memo(() => {
       {/* 左 */}
       <Row>
         <MockPlayLeftButton />
-        <span className="dot-gothic sm:text-sm ml-1 text-sm">LEFT</span>
+        <span className="dot-gothic sm:text-xs ml-1 text-sm">LEFT</span>
       </Row>
       {/* 右 */}
       <Row>
         <MockPlayRightButton />
-        <span className="dot-gothic sm:text-sm ml-1 text-sm">RIGHT</span>
+        <span className="dot-gothic sm:text-xs ml-1 text-sm">RIGHT</span>
       </Row>
       {/* 下 */}
       <Row>
         <MockPlayBottomButton />
-        <span className="dot-gothic sm:text-sm ml-1 text-sm">BOTTOM</span>
+        <span className="dot-gothic sm:text-xs ml-1 text-sm">BOTTOM</span>
       </Row>
       <Spacer />
       {/* 回転 */}
       <Row>
         <MockPlayRotateButton />
-        <span className="dot-gothic sm:text-sm ml-1 text-sm">ROTATE</span>
+        <span className="dot-gothic sm:text-xs ml-1 text-sm">ROTATE</span>
       </Row>
       <Spacer />
       {/* リスタート */}
       <Row>
         <MockPlayRestartButton />
-        <span className="dot-gothic sm:text-sm ml-1 text-sm">RESTART</span>
+        <span className="dot-gothic sm:text-xs ml-1 text-sm">RESTART</span>
       </Row>
       {/* 停止 */}
       <Row>
         <MockPlayPauseButton />
-        <span className="dot-gothic sm:text-sm ml-1 text-sm">Pause</span>
+        <span className="dot-gothic sm:text-xs ml-1 text-sm">PAUSE</span>
       </Row>
       {/* スタート */}
       <Row>
         <MockPlayStartButton />
-        <span className="dot-gothic sm:text-sm ml-1 text-sm">PLAY</span>
+        <span className="dot-gothic sm:text-xs ml-1 text-sm">PLAY</span>
       </Row>
     </div>
   )
 })
 
 const Row: React.FC = memo(({ children }) => {
-  return <div className="flex items-center mb-1">{children}</div>
+  return <div className="flex items-center mb-1 sm:mb-0 sm:h-7">{children}</div>
 })
 
 export default DescriptionBoard

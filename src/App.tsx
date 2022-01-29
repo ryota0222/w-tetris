@@ -1,19 +1,22 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from '@/pages/Home'
-import Layout from '@/components/Layout'
-import { TetrisProvider } from '@/contexts/TetrisProvider'
+import { AppProvider } from '@/contexts/AppProvider'
+import { useEffect } from 'react'
 
 const App: React.VFC = () => {
+  useEffect(() => {
+    document.oncontextmenu = function () {
+      return false
+    }
+  }, [])
   return (
-    <TetrisProvider>
-      <Layout>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Home />} />
-          </Routes>
-        </BrowserRouter>
-      </Layout>
-    </TetrisProvider>
+    <AppProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </BrowserRouter>
+    </AppProvider>
   )
 }
 

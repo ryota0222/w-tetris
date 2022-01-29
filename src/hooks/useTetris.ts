@@ -29,12 +29,17 @@ export const useTetris: UseTetris = () => {
     // ゲームの初期化
     setGame(new gm.Game())
   }, [])
-  // scoreの変更検知
+  // 値の変更検知
   useEffect(() => {
     if (game) {
       game.addObserver(
         (propertyName: string, oldValue: number, newValue: number) => {
-          setScore(newValue)
+          if (propertyName === 'score_change') {
+            setScore(newValue)
+          } else if (propertyName === 'game_end') {
+            setStatus('end')
+            setInGame(false)
+          }
         }
       )
     }

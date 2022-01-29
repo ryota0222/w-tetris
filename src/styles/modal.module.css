@@ -1,0 +1,99 @@
+.overlay_base {
+  padding: 1rem;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0);
+  opacity: 1;
+  outline: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content_base {
+  position: relative;
+  top: auto;
+  left: auto;
+  right: auto;
+  bottom: auto;
+  margin: 0 auto;
+  border: 0;
+  outline: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 80%;
+  max-width: 400px;
+  max-height: 90%;
+  background-color: transparent;
+  box-sizing: border-box;
+  border-radius: 10px;
+  transition-property: background-color, border;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+  backdrop-filter: blur(2px);
+}
+
+.content_after {
+  background: rgba(201, 201, 201, 0.4);
+  border: 1px solid #a9a9a9;
+}
+
+.content_before {
+  background-color: transparent;
+}
+
+.gradient_fill_btn {
+  background: linear-gradient(
+      70.22deg,
+      rgba(158, 0, 255, 0.36) -1.92%,
+      rgba(255, 102, 212, 0.44) 20.21%,
+      rgba(233, 172, 255, 0) 48.37%
+    ),
+    linear-gradient(
+      249.25deg,
+      rgba(0, 255, 224, 0.98) -23.07%,
+      rgba(162, 255, 89, 0.79) 13.65%,
+      rgba(255, 214, 0, 0.11) 46.38%
+    ),
+    linear-gradient(
+      92.7deg,
+      #ff5c5c 23.01%,
+      rgba(255, 154, 43, 0.83) 54.38%,
+      rgba(250, 255, 0, 0.58) 85.11%
+    );
+  width: 80%;
+  padding: 12px 0;
+}
+
+.gradient_border_btn {
+  border-image: url('http://localhost:3000/images/gradient.png') 10;
+  width: 80%;
+  padding: 12px 0;
+  border-width: 3px;
+  color: black;
+  background-image: linear-gradient(
+      70.22deg,
+      rgba(158, 0, 255, 0.36) -1.92%,
+      rgba(255, 102, 212, 0.44) 20.21%,
+      rgba(233, 172, 255, 0) 48.37%
+    ),
+    linear-gradient(
+      249.25deg,
+      rgba(0, 255, 224, 0.98) -23.07%,
+      rgba(162, 255, 89, 0.79) 13.65%,
+      rgba(255, 214, 0, 0.11) 46.38%
+    ),
+    linear-gradient(
+      92.7deg,
+      #ff5c5c 23.01%,
+      rgba(255, 154, 43, 0.83) 54.38%,
+      rgba(250, 255, 0, 0.58) 85.11%
+    );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

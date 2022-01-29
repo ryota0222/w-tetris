@@ -47,6 +47,9 @@ module.exports = {
       sm: { max: '639px' },
       xs: { max: '375px' },
     },
+    minHeight: {
+      screen: 'calc(var(--vh, 1vh) * 100)',
+    },
   },
   variants: {
     extend: {},

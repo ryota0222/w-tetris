@@ -60,6 +60,7 @@ export class Game {
   public nextCtx: CanvasRenderingContext2D | null
   public gameTheme: GameTheme
   public score: Score | null
+  public gameOver: boolean
   private observers: Function[]
   private field: Field | null
   private timer: NodeJS.Timer | null
@@ -71,6 +72,7 @@ export class Game {
     this.nextCanvas = null
     this.nextCtx = null
     this.score = null
+    this.gameOver = true
     this.observers = []
     this.field = null
     this.timer = null
@@ -116,13 +118,15 @@ export class Game {
 
   // ゲームの開始処理（STARTボタンクリック時）
   start(theme?: GameTheme) {
+    // フラグ初期化
+    this.gameOver = false
     // themeがあれば更新
     if (theme) {
       this.gameTheme = theme
     }
     // スコアの初期化
     this.score = new Score()
-    // taroのプロパティ値変更を監視
+    // scoreのプロパティ値変更を監視
     this.score.addObserver(
       (propertyName: string, oldValue: number, newValue: number) => {
         this.notifyObserver('score_change', oldValue, newValue)
@@ -169,6 +173,8 @@ export class Game {
     // 表示クリア
     this.initMainCanvas()
     this.initNextCanvas()
+    // フラグ初期化
+    this.gameOver = false
   }
 
   // 新しいミノを読み込む
@@ -181,7 +187,8 @@ export class Game {
     if (!this.valid(0, 1)) {
       this.drawAll()
       if (this.timer) clearInterval(this.timer)
-      alert('ゲームオーバー')
+      this.gameOver = true
+      this.notifyObserver('game_end', !this.gameOver, this.gameOver)
     }
   }
 

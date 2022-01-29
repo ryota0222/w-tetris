@@ -7,7 +7,7 @@ const Layout: React.FC = ({ children }) => {
         <Header />
         <div className="flex h-full">
           <main
-            className={`container mx-auto pt-4`}
+            className={`container mx-auto pt-2`}
             style={{ maxWidth: '800px' }}
           >
             {children}
