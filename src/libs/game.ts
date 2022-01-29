@@ -116,6 +116,13 @@ export class Game {
     this.nextCanvas.height = NEXT_BOARD_HEIGHT
   }
 
+  // 初期化処理
+  init() {
+    this.initMainCanvas()
+    this.initNextCanvas()
+    this.score?.resetScore()
+  }
+
   // ゲームの開始処理（STARTボタンクリック時）
   start(theme?: GameTheme) {
     // フラグ初期化
@@ -556,6 +563,10 @@ export class Score {
   setScore(score: number) {
     this.notifyObserver('score', this.score, this.score + score)
     this.score += score
+  }
+  resetScore() {
+    this.notifyObserver('score', this.score, 0)
+    this.score = 0
   }
   // scoreの変更を監視
   addObserver(observer: Function) {

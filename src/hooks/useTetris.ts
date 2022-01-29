@@ -6,7 +6,7 @@ type UseTetris = () => {
   start: (theme?: GameTheme) => void
   pause: () => void
   restart: () => void
-  reset: () => void
+  reset: (auto?: boolean) => void
   end: () => void
   moveLeft: () => void
   moveRight: () => void
@@ -72,13 +72,21 @@ export const useTetris: UseTetris = () => {
     }
   }, [game, inGame])
   // ゲームリセット
-  const reset = useCallback(() => {
-    if (game) {
-      game.start('dark-green')
-      setInGame(true)
-      setStatus('in')
-    }
-  }, [game, inGame])
+  const reset = useCallback(
+    (auto?: boolean) => {
+      if (game) {
+        game.init()
+        setInGame(false)
+        setStatus('waiting')
+        if (auto) {
+          game.start('dark-green')
+          setInGame(true)
+          setStatus('in')
+        }
+      }
+    },
+    [game, inGame]
+  )
   // ゲーム終了
   const end = useCallback(() => {
     if (game) {
