@@ -11,12 +11,25 @@ import { useEffect } from 'react'
 import ModalContainer from '@/components/ModalContainer'
 import modalCss from '@/styles/modal.module.css'
 
+const preventUserScale = (e: MouseEvent) => {
+  e.preventDefault()
+}
+
 const Home = () => {
   const { openModal, closeModal } = useModalContext()
   const { status, start, reset, pause } = useTetrisContext()
   useEffect(() => {
+    // ゲーム終了時モーダルを開く
     if (status === 'end') {
       openModal()
+    }
+    // ゲーム開始時ダブルタップによる拡縮を防ぐ
+    if (status === 'in') {
+      document.addEventListener('dblclick', preventUserScale, {
+        passive: false,
+      })
+    } else {
+      document.removeEventListener('dblclick', preventUserScale)
     }
   }, [status])
   return (
