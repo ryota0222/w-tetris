@@ -59,6 +59,26 @@ const Home = () => {
             height="26"
             className="w-3/5"
           />
+          {/* 広告　 */}
+          <div className="mt-6">
+            <a
+              href="https://px.a8.net/svt/ejp?a8mat=3N3RI4+6EERW2+50+2HRYB5"
+              rel="nofollow"
+            >
+              <img
+                width="234"
+                height="60"
+                alt=""
+                src="https://www22.a8.net/svt/bgt?aid=220205308387&wid=001&eno=01&mid=s00000000018015079000&mc=1"
+              />
+            </a>
+          </div>
+          <img
+            width="1"
+            height="1"
+            src="https://www11.a8.net/0.gif?a8mat=3N3RI4+6EERW2+50+2HRYB5"
+            alt=""
+          ></img>
           {/* シェアボタン */}
           <a
             href="http://twitter.com/share?url=https://w-tetris.vercel.app/&text=w-tetirs&via=RyoTa___0222"
