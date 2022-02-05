@@ -20,7 +20,7 @@
 
 @media (max-width: 414px) {
   .play_screen {
-    background-size: calc(210px / 10);
+    background-size: calc(212px / 10);
     width: 216px;
   }
 }
