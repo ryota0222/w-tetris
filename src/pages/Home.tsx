@@ -23,13 +23,19 @@ const Home = () => {
     if (status === 'end') {
       openModal()
     }
-    // ゲーム開始時ダブルタップによる拡縮を防ぐ
     if (status === 'in') {
+      // ゲーム中ダブルタップによる拡縮を防ぐ
       document.addEventListener('dblclick', preventUserScale, {
         passive: false,
       })
+      // ゲーム中長押しによる効果を無効化
+      document.body.style.userSelect = 'none'
+      ;(document.body.style as any).webkitTouchCallout = 'none'
     } else {
+      // 解除
       document.removeEventListener('dblclick', preventUserScale)
+      document.body.style.userSelect = 'initial'
+      ;(document.body.style as any).webkitTouchCallout = 'initial'
     }
   }, [status])
   return (
